@@ -61,11 +61,24 @@
 )
 
 
-(load-theme 'monokai t)
+;
+
+(use-package monokai-theme
+:ensure t
+:config
+(load-theme 'monokai t))
+
+;; Theming
+;(use-package atom-one-dark-theme :ensure t :defer t)
+;(use-package darkokai-theme      :ensure t :defer t)
+;(use-package github-theme        :ensure t :defer t)
+;(use-package paganini-theme      :ensure t :defer t)
+;(use-package solarized-theme     :ensure t :defer t)
+;(use-package sublime-themes      :ensure t :defer t)
+;(use-package zenburn-theme :ensure t :defer t)
 
 (global-linum-mode t)
-(setq linum-format "%4d ")
-(set-face-attribute 'fringe nil :background "black")
+(setq linum-format "%4d \u2502 ")
 
 ;; make both fringes 4 pixels wide
 (fringe-mode 4)
