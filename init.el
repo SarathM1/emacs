@@ -1,5 +1,24 @@
 ;; @@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;;    Installing use-package
+
+;; Basic UI changes
+(setq inhibit-splash-screen t
+            inhibit-startup-echo-area-message t
+                  inhibit-startup-message t)
+
+(setq frame-title-format "emacs")
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(global-hl-line-mode)
+
+;;Org
+;; PDFs visited in Org-mode are opened in Evince (and not in the default choice) https://stackoverflow.com/a/8836108/789593
+(add-hook 'org-mode-hook
+      '(lambda ()
+         (delete '("\\.pdf\\'" . default) org-file-apps)
+         (add-to-list 'org-file-apps '("\\.pdf\\'" . "xreader %s"))))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
