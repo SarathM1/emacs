@@ -4,7 +4,10 @@
 ;; Basic UI changes
 (setq inhibit-splash-screen t
             inhibit-startup-echo-area-message t
-                  inhibit-startup-message t)
+	    inhibit-startup-message t)
+
+;; For proper display of unicode in term mode
+(set-terminal-coding-system 'utf-8-unix)
 
 (setq frame-title-format "emacs")
 (menu-bar-mode -1)
