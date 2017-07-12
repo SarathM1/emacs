@@ -1,3 +1,10 @@
+; To install the latest org mode
+;git clone git://orgmode.org/org-mode.git (in emacs.d folder)
+;make autoloads
+; Refer http://orgmode.org/manual/Installation.html
+(require 'cl)
+(setq load-path (remove-if (lambda (x) (string-match-p "org$" x)) load-path))
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/org")
 ;; @@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;;    Installing use-package
 
@@ -26,6 +33,7 @@
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -38,9 +46,6 @@
 (require 'bind-key)
 ;; @@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;; Add all lines after this!!!
-
-;; Evil-mode
-;; Refer: [https://blog.aaronbieber.com/2016/01/23/living-in-evil.html]
 
 ;; Set defualt font
 ;;(set-frame-font "Inconsolata 17" nil t)
@@ -104,3 +109,19 @@
 
 ;; make both fringes 4 pixels wide
 (fringe-mode 4)
+
+(use-package org-bullets
+  :ensure t
+  :commands (org-bullets-mode)
+  :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+;; Clone latest org-reveal in emacs.d
+(add-to-list 'load-path "~/.emacs.d/org-reveal")
+(require 'ox-reveal)
+
+(setq org-reveal-root "file:///home/sm/reveal.js")
+(setq org-reveal-mathjax t)
+
+(use-package htmlize
+  :ensure t)
+
