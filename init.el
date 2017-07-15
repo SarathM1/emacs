@@ -4,7 +4,7 @@
 ; Refer http://orgmode.org/manual/Installation.html
 (require 'cl)
 (setq load-path (remove-if (lambda (x) (string-match-p "org$" x)) load-path))
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/org")
+(add-to-list 'load-path "/home/teroot/.emacs.d/org-mode/lisp")
 ;; @@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;;    Installing use-package
 
@@ -119,7 +119,7 @@
 (add-to-list 'load-path "~/.emacs.d/org-reveal")
 (require 'ox-reveal)
 
-(setq org-reveal-root "file:///home/sm/reveal.js")
+(setq org-reveal-root "file:///home/teroot/.emacs.d/reveal.js")
 (setq org-reveal-mathjax t)
 
 (use-package htmlize
