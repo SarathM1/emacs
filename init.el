@@ -4,7 +4,7 @@
 ; Refer http://orgmode.org/manual/Installation.html
 (require 'cl)
 (setq load-path (remove-if (lambda (x) (string-match-p "org$" x)) load-path))
-(add-to-list 'load-path "/home/teroot/.emacs.d/org-mode/lisp")
+(add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
 ;; @@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;;    Installing use-package
 
@@ -119,9 +119,31 @@
 (add-to-list 'load-path "~/.emacs.d/org-reveal")
 (require 'ox-reveal)
 
-(setq org-reveal-root "file:///home/teroot/.emacs.d/reveal.js")
+(setq userPath (file-truename "~/.emacs.d/reveal.js"))
+(concat "file://" userPath)
+
+(setq org-reveal-root (concat "file://" userPath))
 (setq org-reveal-mathjax t)
 
 (use-package htmlize
   :ensure t)
+
+(use-package helm
+  :ensure t
+  :bind (("M-x" . helm-M-x)
+         ("C-x C-f" . helm-find-files)
+         ("C-x f" . helm-recentf)
+         ("C-SPC" . helm-dabbrev)
+         ("M-y" . helm-show-kill-ring)
+         ;("C-x b" . helm-buffers-list))
+         ("C-x b" . helm-mini))
+  :bind (:map helm-map
+	      ("M-i" . helm-previous-line)
+	      ("M-k" . helm-next-line)
+	      ("M-I" . helm-previous-page)
+	      ("M-K" . helm-next-page)
+	      ("M-h" . helm-beginning-of-buffer)
+	      ("M-H" . helm-end-of-buffer))
+  :config (progn
+	    (helm-mode 1)))
 
